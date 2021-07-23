@@ -7,26 +7,33 @@
     <link rel="stylesheet" href="styles.css">
     <title>Library Time!</title>
 </head>
+
 <body>
     <div id="container">
-
-        <div id="list-info">
-            <div id="book1">Sample information for book one!Think about React's potential for component design in multiple books, nice!</div>
+        <div id= "booklist-container">
+            <h3>Books in Your Library</h3>            
+            <div id="list-info">
+                
+            </div>
         </div>
         
         <div id="add-book">
-            <div  class="account-details">
-                <div><label>Title*</label><input type="text" name="name" required></div>
-                <div><label>Author*</label><input type="password" name="name" required></div>
-                <div><label>Pages*</label><input type="text" name="name" required></div>
+            <h3>Add a new Book</h3>
+            <div id="add-book-details">
+                <div><label>Title*</label><input type="text" name="title" required></div>
+                <div><label>Author*</label><input type="text" name="author" required></div>
+                <div><label>Pages*</label><input type="number" name="pages" required></div>
                 
                 <div><label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" name="readStatus">
                     <span class="slider"></span>
-                  </label></div>
-              </div>
+                  </label>
+                </div>
+                <button id="add-button">Add!</button>
+            </div>
         </div>
     </div>
+    
     <script src="logic.js"></script>
 
 </body>
