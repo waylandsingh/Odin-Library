@@ -9,7 +9,7 @@ function Book(title, author, pages, readStatus) {
 }
 
 Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus}`
+    return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus?'Finished':'In Progress'}`
 }
 
 // store the Books in an array for now
@@ -40,9 +40,8 @@ function toggleReadStatus(id) {
 }
 
 // Example books
-addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', 'True')
-
-addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', 'True')
+addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', true)
+addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', true)
 
 // select the display area and render the text
 // React version could render different components
@@ -58,7 +57,7 @@ function render() {
         d.innerHTML = `
             <p>${book.info()}</br>
                 <button onclick="removeBookByUID('${book.uid}')">Remove</button>
-                <button onclick="toggleReadStatus('${book.uid}')">toggleRead</button>
+                <button onclick="toggleReadStatus('${book.uid}')">Toggle Read</button>
                 </p>
         `
 
@@ -87,7 +86,7 @@ document.querySelector('#add-button').addEventListener('click', ()=>{
     let toggleField = document.querySelectorAll(".toggle-input input")
     toggleField.forEach((f) =>{
         console.log(f.checked)
-        info[f.name] = f.checked ? 'Finished Reading' : 'Not Read'
+        info[f.name] = f.checked ? true : false
     })
     
     addBookToLib(myLibrary, ...Object.values(info))
