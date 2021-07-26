@@ -6,17 +6,21 @@
 }
 #container {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  padding: 4%;
-  max-width: 650px;
-  height: 250px;
+  padding: 2%;
+  width: 80%;
+  height: 65%;
   border: 1px dashed lightslategray;
 }
 
 #booklist-container {
-  flex:1
+  border: 1px solid red;
 }
 
+#add-book {
+  border: 1px solid red;
+}
 /* toggle slider */
 
 .switch {
