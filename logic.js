@@ -26,10 +26,23 @@ function removeBookByUID(id) {
     render()
 }
 
-// Example books
-addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', 'Finished Reading')
+// return the index of a book by uid
+function findBook(id) {
+    return myLibrary.findIndex(i => i.uid===id)
+}
 
-addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', 'Finished Reading')
+// toggle the read/not read of a book
+function toggleReadStatus(id) {
+    const idxOfBook = findBook(id)
+    console.log(idxOfBook)
+    myLibrary[idxOfBook].readStatus = !myLibrary[idxOfBook].readStatus
+    render()
+}
+
+// Example books
+addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', 'True')
+
+addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', 'True')
 
 // select the display area and render the text
 // React version could render different components
@@ -45,7 +58,8 @@ function render() {
         d.innerHTML = `
             <p>${book.info()}</br>
                 <button onclick="removeBookByUID('${book.uid}')">Remove</button>
-            </p>
+                <button onclick="toggleReadStatus('${book.uid}')">toggleRead</button>
+                </p>
         `
 
         // append the complete section to the entry
