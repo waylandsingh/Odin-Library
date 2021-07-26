@@ -1,4 +1,7 @@
+// these might be defined as react components instead?
 function Book(title, author, pages, readStatus) {
+    this.uid = Date.now() + title
+    //consider hashing the title/information to generate uids instead
     this.title = title
     this.author = author
     this.pages = pages
@@ -9,6 +12,7 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus}`
 }
 
+// store the Books in an array for now
 let myLibrary = []
 
 function addBookToLib(lib, title, author, pages, readStatus) {
@@ -16,18 +20,24 @@ function addBookToLib(lib, title, author, pages, readStatus) {
     myLibrary.push(new Book(title, author, pages, readStatus))
 }
 
+// Example books
 addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', 'Finished Reading')
 addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', 'Finished Reading')
 
-// select the display area
+// select the display area and render the text
+// React version could render different components
 let infoSection = document.querySelector('#list-info')
 function render() {
     infoSection.innerText = ''
     myLibrary.forEach((book) => {
         let d = document.createElement('div')
-        // maybe rework to have more semantic structure
-        // think about CSS/display, size, class of the div!
+        // associate with title so that removal can filter the library
+        d.setAttribute('id', book.uid)
+        // add a button that will remove the book and call render
+        // include text with the book information
         d.innerText = book.info()
+
+        // append the complete section to the entry
         infoSection.appendChild(d)
     })
 }
@@ -40,14 +50,20 @@ render()
 // on click, console.log all of the info in the inputs
 //find the button ->
 document.querySelector('#add-button').addEventListener('click', ()=>{
-    let formFields = document.querySelectorAll("#add-book-details input")
+    let formFields = document.querySelectorAll(".standard-input input")
     let info = {}
     formFields.forEach((f)=>{
         info[f.name] = f.value
     })
+
+    let toggleField = document.querySelectorAll(".toggle-input input")
+    toggleField.forEach((f) =>{
+        console.log(f.checked)
+        info[f.name] = f.checked ? 'Finished Reading' : 'Not Read'
+    })
     
     addBookToLib(myLibrary, ...Object.values(info))
     render()
-    // console.log(info)
+    console.log
 })
 

@@ -1,3 +1,22 @@
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#container {
+  display: flex;
+  justify-content: space-around;
+  padding: 4%;
+  max-width: 650px;
+  height: 250px;
+  border: 1px dashed lightslategray;
+}
+
+#booklist-container {
+  flex:1
+}
+
 /* toggle slider */
 
 .switch {
