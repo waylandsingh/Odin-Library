@@ -20,9 +20,16 @@ function addBookToLib(lib, title, author, pages, readStatus) {
     myLibrary.push(new Book(title, author, pages, readStatus))
 }
 
+// remove a book by it's uid
+function removeBookByUID(id) {
+    myLibrary = myLibrary.filter((book) => book.uid !== id)
+}
+
 // Example books
 addBookToLib(myLibrary, 'The Hobbit', 'Tolkien', '600', 'Finished Reading')
+
 addBookToLib(myLibrary, 'The Count of Monte Cristo', 'Dumas', '1400', 'Finished Reading')
+// removeBookByUID(myLibrary[0].uid) //testing the removal by filtration
 
 // select the display area and render the text
 // React version could render different components
