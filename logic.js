@@ -8,6 +8,7 @@ function Book(title, author, pages, readStatus) {
     this.readStatus = readStatus
 }
 
+// prototype modification
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus?'Finished':'In Progress'}`
 }
