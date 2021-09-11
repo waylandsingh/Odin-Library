@@ -1,17 +1,20 @@
-// these might be defined as react components instead?
-function Book(title, author, pages, readStatus) {
-    this.uid = Date.now() + title
-    //consider hashing the title/information to generate uids instead
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.readStatus = readStatus
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.uid = Date.now() + title
+        //consider hashing the title/information to generate uids instead
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.readStatus = readStatus
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus?'Finished':'In Progress'}`
+    }
 }
 
-// prototype modification
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages - ${this.readStatus?'Finished':'In Progress'}`
-}
+
+
 
 // store the Books in an array for now
 let myLibrary = []
